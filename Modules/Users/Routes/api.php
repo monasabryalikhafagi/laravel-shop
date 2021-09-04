@@ -26,9 +26,12 @@ Route::group([
     Route::post('register', 'AuthApiController@register');
     Route::post('login', 'AuthApiController@login');
     Route::post('logout', 'AuthApiController@logout');
-    // Route::get('redirect/{provider}', 'AuthApiController@redirectToProvider');
-    // Route::get('redirect/{provider}/callback', 'AuthApiController@handleProviderCallback');
     Route::post('/social-login/{provider}', 'AuthApiController@socialLogin');
+    Route::group(['middleware'=>'auth:api'],function() {
+        Route::get('/profile', 'UsersApiController@getProfile');
+        Route::post('/post-profile', 'UsersApiController@postProfile');
+    });
+
 
 
 });
