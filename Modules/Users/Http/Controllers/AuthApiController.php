@@ -25,7 +25,6 @@ class AuthApiController extends Controller
             'password' => 'required|min:6|max:50',
 
         ]);
-        return response()->json(['message' => 'hello'], 201);
 
         try {
 
