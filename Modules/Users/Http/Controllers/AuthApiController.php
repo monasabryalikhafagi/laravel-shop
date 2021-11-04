@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller;
 use Laravel\Socialite\Facades\Socialite;
 use Modules\Users\Entities\Socialauth;
 use Modules\Users\Entities\User;
+use Modules\Users\Http\Requests\RegisterRequest;
 
 class AuthApiController extends Controller
 {
@@ -16,20 +17,12 @@ class AuthApiController extends Controller
      *
      * @return void
      */
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
-        //validate incoming request
-        $request->validate([
-            'name' => 'required|min:3|max:250',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6|max:50',
-
-        ]);
-
         try {
 
             $user = new User;
-            $user->code = $request->input('name');
+            $user->name = $request->input('name');
             $user->email = $request->input('email');
             $plainPassword = $request->input('password');
             $user->password = app('hash')->make($plainPassword);
@@ -39,7 +32,7 @@ class AuthApiController extends Controller
 
         } catch (\Exception $e) {
             //return error message
-            return response()->json(['message' => 'User Registration Failed!'], 409);
+            return response()->json(['message' => 'User Registration Failed!',"error"=>$e], 409);
         }
 
     }
