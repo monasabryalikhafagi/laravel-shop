@@ -13,8 +13,13 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/products', function (Request $request) {
-    Route::get('/', 'ProductsApiController@getAllProducts');
-    Route::post('/create', 'ProductsApiController@AddProduct');
-   // return $request->user();
+Route::group([
+    'prefix' => 'products'
+
+], function () {
+
+Route::get('/', 'ProductsApiController@getAllProducts');
+Route::get('/show/{id}', 'ProductsApiController@getProduct');
+Route::post('/create', 'ProductsApiController@AddProduct');
 });
+
