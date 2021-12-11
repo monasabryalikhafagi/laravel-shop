@@ -22,5 +22,9 @@ class Order extends Model
     {
         return $this->belongsTo(\Midade\Users\Models\User::class);
     }
+    public function products()
+    {
+        return $this->belongsToMany('Modules\Products\Entities\Product');
+    }
 
 }

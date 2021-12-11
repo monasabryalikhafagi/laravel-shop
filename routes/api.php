@@ -19,3 +19,4 @@ use Illuminate\Support\Facades\Route;
 // });
 base_path('Modules/Users/Routes/api.php');
 base_path('Modules/Products/Routes/api.php');
+base_path('Modules/Orders/Routes/api.php');

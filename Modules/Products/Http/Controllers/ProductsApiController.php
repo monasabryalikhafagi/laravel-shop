@@ -20,7 +20,7 @@ class ProductsApiController extends Controller
     {
         $products = Product::paginate(2);
 
-        return response()->json(ProductResource::collection($products), 200);
+      return response()->json(productResource::collection($products), 200);
     }
 
     public function getProduct($id)

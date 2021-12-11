@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
    
+    protected $primaryKey = 'id';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -21,6 +23,10 @@ class Product extends Model
     public function user()
     {
         return $this->belongsTo(\Midade\Users\Models\User::class);
+    }
+    public function orders()
+    {
+        return $this->belongsToMany('Modules\Orders\Entities\Order');
     }
 
 }

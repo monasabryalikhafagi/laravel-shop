@@ -12,8 +12,10 @@ class Product extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
+  //  public static $wrap = 'user';
     public function toArray($request)
     {
+       
         return [
             'id'=>$this->id,
             'title'=>$this->title,
