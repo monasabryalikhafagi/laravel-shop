@@ -5,6 +5,10 @@ namespace Modules\Users\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Notification;
+use Modules\Users\Entities\User;
+use Modules\Products\Entities\Product;
+use App\Notifications\OrderAdded;
 
 class UsersController extends Controller
 {
@@ -76,4 +80,13 @@ class UsersController extends Controller
     {
         //
     }
+   public function testNotification()
+   {
+
+       $user =  User::find(2);
+       $product = Product::first();
+      // dd($user,$product);
+       Notification::send($user ,new OrderAdded($product));
+       return "done";
+   }
 }

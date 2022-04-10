@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/notifications', function () {
+
+    return view('notifications.index');
+});
+Route::get('/notifications/get-notifications', function () {
+
+    return response()->json(['notifications'=>auth()->user()->notifications], 200);
+});
+Route::get('/test-notification','\Modules\Users\Http\Controllers\UsersController@testNotification');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

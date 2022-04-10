@@ -14,7 +14,7 @@ class Socialauth extends Model
      *
      * @var array
      */
-    protected $guarded =[
+    protected $guarded = [
         'id'
     ];
 
