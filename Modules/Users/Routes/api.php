@@ -14,9 +14,14 @@ use Stevebauman\Location\Facades\Location;
 |
 */
 
-Route::get('/users', function (Request $request) {
+// Route::get('/users', function (Request $request) {
 
-     return response()->json($request->getClientIp(true), 200);
+//      //return response()->json($request->getClientIp(true), 200);
+
+// });
+Route::group([ 'prefix' => 'users'], function(){
+    Route::get('/', 'UsersApiController@getUsers');
+
 });
 Route::group([
     'prefix' => 'auth'

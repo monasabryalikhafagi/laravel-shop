@@ -5,10 +5,11 @@ namespace Modules\Users\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Users\Http\Resources\User as UserResource;
 use Auth;
 use Modules\Users\Entities\User;
 use Modules\Users\Http\Requests\UpdateUserProfileRequest;
+use Modules\Users\Http\Resources\UserCollection;
+use Modules\Users\Http\Resources\UserResource;
 class UsersApiController extends Controller
 {
     public function getProfile( )
@@ -25,6 +26,11 @@ class UsersApiController extends Controller
 
         return new UserResource(Auth::user());
       
+    }
+
+    public function getUsers()
+    {
+        return new UserCollection(User::all());
     }
 
 }
